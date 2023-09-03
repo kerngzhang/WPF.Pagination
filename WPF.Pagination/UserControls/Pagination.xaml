@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="WPF.Pagination.UserControls.Pagination"
+             x:Name="KPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.Pagination.UserControls"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <md:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Orientation="Horizontal">
+        <ComboBox
+            x:Name="cbPageCount"
+            Width="80"
+            ItemsSource="{Binding PageCounts}"
+            SelectedItem="{Binding CurPageCount}"
+            Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+        <Button
+            x:Name="btnFirstPage"
+            Content="{md:PackIcon SkipPreviousOutline}"
+            IsEnabled="{Binding FistPageEnabled}"
+            Style="{StaticResource MaterialDesignFlatLightButton}" />
+        <Button
+            x:Name="btnPreviousPage"
+            Content="{md:PackIcon MenuLeftOutline}"
+            IsEnabled="{Binding PreviousPageEnabled}"
+            Style="{StaticResource MaterialDesignFlatLightButton}" />
+        <Button
+            x:Name="btnNextPage"
+            Content="{md:PackIcon MenuRightOutline}"
+            IsEnabled="{Binding NextPageEnabled}"
+            Style="{StaticResource MaterialDesignFlatLightButton}" />
+        <Button
+            x:Name="btnLastPage"
+            Content="{md:PackIcon SkipNextOutline}"
+            IsEnabled="{Binding LastPageEnabled}"
+            Style="{StaticResource MaterialDesignFlatLightButton}" />
+        <ComboBox
+            x:Name="cbCurPage"
+            Width="80"
+            SelectedItem="{Binding CurrentPage}"
+            ItemsSource="{Binding Pages}"
+            Style="{StaticResource MaterialDesignFilledComboBox}" />
+        <TextBlock VerticalAlignment="Center" Text="/" />
+        <TextBlock VerticalAlignment="Center" Text="{Binding TotalPage}" />
+        <Button
+            x:Name="btnGo"
+            Command="{Binding Command}"
+            Content="{md:PackIcon HandPointingRight}"
+            Style="{StaticResource MaterialDesignFlatLightButton}" />
+    </StackPanel>
+</UserControl>
